@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -6,13 +6,21 @@ import {
   Switch
 } from 'react-router-dom';
 
-import Users from './user/pages/Users';
-import NewMovie from './movies/pages/NewMovie';
-import UserMovies from './movies/pages/UserMovies';
-import UpdateMovie from './movies/pages/UpdateMovie';
-import Auth from './user/pages/Auth';
+//import Users from './user/pages/Users';
+//import NewMovie from './movies/pages/NewMovie';
+//import UserMovies from './movies/pages/UserMovies';
+//import UpdateMovie from './movies/pages/UpdateMovie';
+//import Auth from './user/pages/Auth'; code spilting applied
 import MainNavigation from './shared/components/Navigation/MainNavigation';
+import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
 import { AuthContext } from './shared/context/auth-context';
+
+const Users = React.lazy(() => import('./user/pages/Users'));
+const NewMovie = React.lazy(() => import('./movies/pages/NewMovie'));
+const UserMovies = React.lazy(() => import('./movies/pages/UserMovies'));
+const UpdateMovie = React.lazy(() => import('./movies/pages/UpdateMovie'));
+const Auth = React.lazy(() => import('./user/pages/Auth'));
+
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -75,7 +83,7 @@ const App = () => {
     >
       <Router>
         <MainNavigation />
-        <main>{routes}</main>
+        <main><Suspense fallback={<div classname="center"><LoadingSpinner /></div>}>{routes}</Suspense></main>
       </Router>
     </AuthContext.Provider>
   );

@@ -49,7 +49,7 @@ const NewMovie = () => {
       formData.append('description', formState.inputs.description.value);
       formData.append('creator', auth.userId);
       formData.append('image', formState.inputs.image.value);
-      await sendRequest('http://localhost:5000/api/movies', 'POST', formData);
+      await sendRequest(process.env.REACT_APP_BACKEND_URL + '/movies', 'POST', formData);
       history.push('/');
     } catch (err) {}
   };

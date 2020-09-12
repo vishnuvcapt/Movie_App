@@ -30,7 +30,7 @@ const MovieItem = props => {
 
     try {
       await sendRequest(
-        `http://localhost:5000/api/movies/${props.id}`,
+        process.env.REACT_APP_BACKEND_URL + `/movies/${props.id}`,
         'DELETE'
       );
       props.onDelete(props.id);
@@ -67,7 +67,7 @@ const MovieItem = props => {
         <Card className="movie-item__content">
           {isLoading && <LoadingSpinner asOverlay />}
           <div className="movie-item__image">
-            <img src={`http://localhost:5000/${props.image}`} alt={props.title} />
+            <img src={`${process.env.REACT_APP_ASSET_URL}/${props.image}`} alt={props.title} />
           </div>
           <div className="movie-item__info">
             <h2>{props.title}</h2>

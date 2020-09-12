@@ -42,7 +42,7 @@ const UpdateMovie = () => {
     const fetchMovie = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/movies/${movieId}`
+          `${process.env.REACT_APP_BACKEND_URL}/movies/${movieId}`
         );
         setLoadedMovie(responseData.movie);
         setFormData(
@@ -68,7 +68,7 @@ const UpdateMovie = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/movies/${movieId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/movies/${movieId}`,
         'PATCH',
         JSON.stringify({
           title: formState.inputs.title.value,

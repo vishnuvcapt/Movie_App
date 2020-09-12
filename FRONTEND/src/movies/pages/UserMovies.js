@@ -16,7 +16,7 @@ const UserMovies = () => {
     const fetchMovies = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/movies/user/${userId}`
+          `${process.env.REACT_APP_BACKEND_URL}/movies/user/${userId}`
         );
         setLoadedMovies(responseData.movies);
       } catch (err) {}
