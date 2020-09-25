@@ -6,11 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 
-//import Users from './user/pages/Users';
-//import NewMovie from './movies/pages/NewMovie';
-//import UserMovies from './movies/pages/UserMovies';
-//import UpdateMovie from './movies/pages/UpdateMovie';
-//import Auth from './user/pages/Auth'; code spilting applied
+
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
 import { AuthContext } from './shared/context/auth-context';
